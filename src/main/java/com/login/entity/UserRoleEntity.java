@@ -30,4 +30,10 @@ public class UserRoleEntity {
     @ManyToOne
     @JoinColumn(name="username", referencedColumnName = "username", insertable = false, updatable = false)
     private UserEntity user;
+
+    public UserRoleEntity(UserEntity username, String role) {
+        this.user = username;
+        this.role = role;
+        this.grantedDate = LocalDateTime.now();
+    }
 }
