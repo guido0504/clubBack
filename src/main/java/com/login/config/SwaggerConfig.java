@@ -27,12 +27,12 @@ public class SwaggerConfig implements WebMvcConfigurer {
 	public OpenAPI customOpenAPI() {
 		return new OpenAPI()
 				.info(new Info()
-						.title("Servicios New Level")
+						.title("Servicios Club villa Elvira")
 						.version("1.0")
-						.description("Documentación de los servicios de New Level")
+						.description("Documentación de los servicios de Club Villa Elvira")
 						.contact(new Contact()
-								.name("Ferrari Guido")
-								.email("guidoferrari24@gmail.com") // opcional
+								.name("Practica 2")
+								.email("practica2@gmail.com") // opcional
 
 						)
 				)

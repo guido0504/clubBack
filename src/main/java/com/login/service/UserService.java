@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
@@ -32,6 +31,13 @@ public class UserService {
 
     @Value("${app.reset.token.minutes:15}")
     private int tokenMinutes;
+
+    public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder, ResetPasswordTokenRepository tokenRepo) {
+        this.userRepository = userRepository;
+        this.userRoleRepository = userRoleRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.tokenRepo = tokenRepo;
+    }
 
     public void registerUser(String username, String password, String email,List<String> roles) {
         if (userRepository.existsById(username)) {

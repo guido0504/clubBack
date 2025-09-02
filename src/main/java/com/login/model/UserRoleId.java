@@ -8,10 +8,6 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class UserRoleId implements Serializable {
 
     private String username;
@@ -27,5 +23,29 @@ public class UserRoleId implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(username, role);
+    }
+
+    public UserRoleId(String role, String username) {
+        this.role = role;
+        this.username = username;
+    }
+
+    public UserRoleId() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }
