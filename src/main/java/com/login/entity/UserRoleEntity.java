@@ -6,12 +6,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "user_roles")
 @IdClass(UserRoleId.class)
-public class UserRoleEntity {
+public class UserRoleEntity implements Serializable {
 
     @Id
     @Column(nullable = false)
@@ -21,11 +22,12 @@ public class UserRoleEntity {
     @Column(nullable = false)
     private String role;
 
-    @Column(name="granted_date",nullable = false,columnDefinition = "DATETIME")
+    @Column(name="granted_date",nullable = false,columnDefinition = "TIMESTAMP")
     private LocalDateTime grantedDate;
 
     @ManyToOne
-    @JoinColumn(name="username", referencedColumnName = "username", insertable = false, updatable = false)
+    @MapsId("username")
+    @JoinColumn(name="username", referencedColumnName = "username")
     private UserEntity user;
 
     public UserRoleEntity() {

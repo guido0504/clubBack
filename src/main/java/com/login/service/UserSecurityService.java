@@ -1,7 +1,9 @@
 package com.login.service;
 
+import com.login.dto.ResponseDefaultDto;
 import com.login.entity.UserEntity;
 import com.login.entity.UserRoleEntity;
+import com.login.exception.UsernameNotFoundExceptionDTO;
 import com.login.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -28,7 +30,8 @@ public class UserSecurityService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserEntity userEntity = this.userRepository.findById(username).orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+        UserEntity userEntity = this.userRepository.findById(username).orElseThrow(() -> new UsernameNotFoundExceptionDTO("Usuario no encontrado",
+                new ResponseDefaultDto(403,"Error",null,"Usuario no encontrado")));
         String[] roles = userEntity.getRoles().stream().map(UserRoleEntity::getRole).toArray(String[]::new);
 
         return User.builder()

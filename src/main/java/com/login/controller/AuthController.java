@@ -23,7 +23,7 @@ public class AuthController {
     private final UserService userService;
 
     @Autowired
-    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwt, UserService userService) {
+    public AuthController(AuthenticationManager authenticationManager, JwtUtil jwt,UserService userService) {
         this.authenticationManager = authenticationManager;
         this.jwt = jwt;
         this.userService = userService;

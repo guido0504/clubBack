@@ -1,15 +1,21 @@
 package com.login.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserEntity implements Serializable {
 
     @Id
     @Column(nullable = false, unique = true)
@@ -21,10 +27,10 @@ public class UserEntity {
     @Column(nullable = false, unique = true)
     private String mail;
 
-    @Column(nullable = false,columnDefinition = "TINYINT")
+    @Column(nullable = false)
     private Boolean locked;
 
-    @Column(nullable = false,columnDefinition = "TINYINT")
+    @Column(nullable = false)
     private Boolean disabled;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
@@ -78,4 +84,5 @@ public class UserEntity {
     public void setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
     }
+
 }

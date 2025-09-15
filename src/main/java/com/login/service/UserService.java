@@ -5,7 +5,7 @@ import com.login.entity.ResetPasswordToken;
 import com.login.entity.UserEntity;
 import com.login.entity.UserRoleEntity;
 import com.login.exception.RuntimeExceptionDTO;
-//import com.login.interfaces.MailSenderPort;
+import com.login.interfaces.MailSenderPort;
 import com.login.repository.ResetPasswordTokenRepository;
 import com.login.repository.UserRepository;
 import com.login.repository.UserRoleRepository;
@@ -27,7 +27,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final ResetPasswordTokenRepository tokenRepo;
 
-    //private final MailSenderPort emailService;
+    private final MailSenderPort emailService;
 
     @Value("${app.reset.token.minutes:15}")
     private int tokenMinutes;
@@ -99,7 +99,7 @@ public class UserService {
         t.setExpiresAt(LocalDateTime.now().plusMinutes(tokenMinutes));
         tokenRepo.save(t);
 
-        //emailService.sendResentLink(user.getMail(), token);
+        emailService.sendResentLink(user.getMail(), token);
     }
 
     /** Paso 2: validar token + setear nueva password */
