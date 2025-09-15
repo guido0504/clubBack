@@ -35,27 +35,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(
-                                "/pais/**","/pais",
+                                "/pais/**",
+                                "/pais",
                                 "/tipo-actividad/**"
                         ).hasRole("ADMIN")
                         .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers(
-                                "/api/personal_property",
-                                "/api/personal_property_client",
-                                "/api/city",
-                                "/api/client",
-                                "/api/price",
-                                "/api/data_additional",
-                                "/api/direction",
-                                "/api/brand",
-                                "/api/model",
-                                "/api/product",
-                                "/api/country",
-                                "/api/province",
-                                "/api/type_vehicle",
-                                "/api/car_owner",
-                                "/api/vehicle",
-                                "/api/menus").hasRole("ADMIN")
                         //.requestMatchers("/api/order/random").hasAuthority("random_order")
                         .anyRequest()
                         .authenticated()

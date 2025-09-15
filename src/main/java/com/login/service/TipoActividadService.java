@@ -13,7 +13,7 @@ public interface TipoActividadService {
 
     public List<TipoActividadResponseDto> findAll();
 
-    public Optional<TipoActividadResponseDto> findById(Long id);
+    public TipoActividadResponseDto findById(Long id);
 
     public TipoActividadResponseDto update(TipoActividadRequestCompleteDto tipoActividadRequestCompleteDto);
 

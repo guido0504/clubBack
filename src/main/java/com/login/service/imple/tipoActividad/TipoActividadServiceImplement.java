@@ -26,12 +26,12 @@ public class TipoActividadServiceImplement implements TipoActividadService {
 
     @Override
     public List<TipoActividadResponseDto> findAll() {
-        return List.of();
+        return TipoActividadResponseDto.convertTo(tipoActividadRepository.findAll());
     }
 
     @Override
-    public Optional<TipoActividadResponseDto> findById(Long id) {
-        return Optional.empty();
+    public TipoActividadResponseDto findById(Long id) {
+        return TipoActividadResponseDto.convertTo(tipoActividadRepository.getReferenceById(id));
     }
 
     @Override
