@@ -1,6 +1,8 @@
 package com.login.entity.tipoActividad;
 
+import com.login.dto.tipoActividad.TipoActividadRequestCompleteDto;
 import com.login.dto.tipoActividad.TipoActividadRequestDto;
+import com.login.dto.tipoActividad.TipoActividadResponseDto;
 import jakarta.persistence.*;
 
 @Entity
@@ -44,5 +46,9 @@ public class TipoActividadEntity {
 
     public static TipoActividadEntity tipoActividadEntity(TipoActividadRequestDto tipoActividadRequestDto){
         return new TipoActividadEntity(tipoActividadRequestDto.nombre());
+    }
+
+    public static TipoActividadEntity tipoActividadEntity(TipoActividadRequestCompleteDto tipoActividadRequestCompleteDto){
+        return new TipoActividadEntity(tipoActividadRequestCompleteDto.id(),tipoActividadRequestCompleteDto.nombre());
     }
 }

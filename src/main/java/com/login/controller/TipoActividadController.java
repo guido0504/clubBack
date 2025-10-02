@@ -33,4 +33,10 @@ public class TipoActividadController {
         responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadServiceImplement.findById(id),"Se muestran los tipos de actividades");
         return responseDefaultDto;
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseDefaultDto delete(@PathVariable("id") Long id){
+        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadServiceImplement.delete(id),"Se muestran los tipos de actividades");
+        return responseDefaultDto;
+    }
 }

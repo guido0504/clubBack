@@ -36,11 +36,13 @@ public class TipoActividadServiceImplement implements TipoActividadService {
 
     @Override
     public TipoActividadResponseDto update(TipoActividadRequestCompleteDto tipoActividadRequestCompleteDto) {
-        return null;
+        tipoActividadRepository.save(TipoActividadEntity.tipoActividadEntity(tipoActividadRequestCompleteDto));
+        return new TipoActividadResponseDto(tipoActividadRepository.count(), tipoActividadRequestCompleteDto.nombre());
     }
 
     @Override
     public String delete(Long id) {
-        return "";
+        tipoActividadRepository.deleteById(id);
+        return "Tipo de actividad con ID " + id + " eliminado con éxito.";
     }
 }
