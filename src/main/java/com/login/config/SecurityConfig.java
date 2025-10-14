@@ -38,7 +38,7 @@ public class SecurityConfig {
                                 "/pais/**",
                                 "/tipo-actividad/**",
                                 "/tipo-evento/**"
-                        ).hasRole("ADMIN")
+                        ).permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         //.requestMatchers("/api/order/random").hasAuthority("random_order")
                         .anyRequest()

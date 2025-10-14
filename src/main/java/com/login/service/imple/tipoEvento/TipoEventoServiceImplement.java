@@ -26,21 +26,24 @@ public class TipoEventoServiceImplement implements TipoEventoService {
 
     @Override
     public List<TipoEventoResponseDto> getAll() {
-        return List.of();
+        return TipoEventoResponseDto.convertTo(tipoEventoRepository.findAll());
     }
 
     @Override
     public TipoEventoResponseDto getById(Long id) {
-        return null;
+        return TipoEventoResponseDto.convertTo(tipoEventoRepository.findById(id).get());
     }
 
     @Override
     public TipoEventoResponseDto update(TipoEventoRequestCompleteDto tipoEvento) {
-        return null;
+        TipoEvento tipoEventoE = TipoEvento.converTo(tipoEvento);
+        tipoEventoRepository.save(tipoEventoE);
+        return TipoEventoResponseDto.convertTo(tipoEventoE);
     }
 
     @Override
     public String delete(Long id) {
-        return "";
+        tipoEventoRepository.deleteById(id);
+        return "Se elimino exitosamente";
     }
 }

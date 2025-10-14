@@ -94,6 +94,13 @@
 			<artifactId>spring-boot-starter-mail</artifactId>
 			<version>3.3.4</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.6.0</version> <!-- versión actual, puede variar -->
+		</dependency>
+
 	</dependencies>
 
 	<build>

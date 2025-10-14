@@ -2,6 +2,7 @@ package com.login.controller;
 
 import com.login.dto.ResponseDefaultDto;
 import com.login.dto.tipoActividad.TipoActividadRequestDto;
+import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.dto.tipoEvento.TipoEventoRequestDto;
 import com.login.entity.tipoEvento.TipoEvento;
 import com.login.service.imple.tipoEvento.TipoEventoServiceImplement;
@@ -41,8 +42,13 @@ public class TipoEventoController {
 
     @DeleteMapping("/delete/{id}")
     public ResponseDefaultDto delete(@PathVariable("id") Long id){
-        tipoEventoServiceImplement.delete(id);
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",null,"Se muestran los tipos de eventos");
+        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",null,tipoEventoServiceImplement.delete(id));
         return responseDefaultDto;
+    }
+
+    @PutMapping(value = "/update")
+    public ResponseDefaultDto update(TipoEventoRequestCompleteDto tipoEventoRequestDto){
+        tipoEventoServiceImplement.update(tipoEventoRequestDto);
+        return new ResponseDefaultDto(200,"Exitoso",tipoEventoRequestDto,"Se modifico el tipo de evento");
     }
 }

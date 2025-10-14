@@ -2,6 +2,7 @@
 
 package com.login.entity.tipoEvento;
 
+import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.dto.tipoEvento.TipoEventoRequestDto;
 import jakarta.persistence.*;
 
@@ -49,5 +50,9 @@ public class TipoEvento {
 
     public static TipoEvento converTo(TipoEventoRequestDto tipoEventoRequestDto){
         return new TipoEvento(tipoEventoRequestDto.npmbre());
+    }
+
+    public static TipoEvento converTo(TipoEventoRequestCompleteDto tipoEventoRequestDto){
+        return new TipoEvento(tipoEventoRequestDto.id(), tipoEventoRequestDto.nombre());
     }
 }
