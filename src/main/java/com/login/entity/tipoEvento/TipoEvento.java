@@ -4,7 +4,10 @@ package com.login.entity.tipoEvento;
 
 import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.dto.tipoEvento.TipoEventoRequestDto;
+import com.login.entity.evento.Evento;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name="tipo-evento")
@@ -13,6 +16,9 @@ public class TipoEvento {
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Autoincremental
     private long id;
     private String nombre;
+
+    @OneToMany(mappedBy = "tipoEvento")
+    private List<Evento> evento;
 
     // Constructor vacío (Obligatorio para JPA)
     public TipoEvento() {
@@ -54,5 +60,13 @@ public class TipoEvento {
 
     public static TipoEvento converTo(TipoEventoRequestCompleteDto tipoEventoRequestDto){
         return new TipoEvento(tipoEventoRequestDto.id(), tipoEventoRequestDto.nombre());
+    }
+
+    public List<Evento> getEvento() {
+        return evento;
+    }
+
+    public void setEvento(List<Evento> evento) {
+        this.evento = evento;
     }
 }
