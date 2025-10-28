@@ -4,3 +4,5 @@ public record TipoEventoRequestCompleteDto (
     Long id,
     String nombre
 ){}
+
+
