@@ -37,7 +37,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/pais/**",
                                 "/tipo-actividad/**",
-                                "/tipo-evento/**"
+                                "/tipo-evento/**",
+                                "/post/**"
                         ).permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         //.requestMatchers("/api/order/random").hasAuthority("random_order")

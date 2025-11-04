@@ -4,7 +4,7 @@ import com.login.dto.tipoActividad.TipoActividadRequestCompleteDto;
 import com.login.dto.tipoActividad.TipoActividadRequestDto;
 import com.login.dto.tipoActividad.TipoActividadResponseDto;
 import com.login.entity.tipoActividad.TipoActividadEntity;
-import com.login.repository.tipoevento.TipoActividadRepository.TipoActividadRepository;
+import com.login.repository.TipoActividadRepository.TipoActividadRepository;
 import com.login.service.TipoActividadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

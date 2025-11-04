@@ -15,10 +15,12 @@ public class TipoEvento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Autoincremental
     private long id;
+
+    @Column(name = "nombre")
     private String nombre;
 
-    @OneToMany(mappedBy = "tipoEvento")
-    private List<Evento> evento;
+    //@OneToMany(mappedBy = "tipoEvento")
+    //private List<Evento> evento;
 
     // Constructor vacío (Obligatorio para JPA)
     public TipoEvento() {
@@ -62,11 +64,11 @@ public class TipoEvento {
         return new TipoEvento(tipoEventoRequestDto.id(), tipoEventoRequestDto.nombre());
     }
 
-    public List<Evento> getEvento() {
+    /*public List<Evento> getEvento() {
         return evento;
     }
 
     public void setEvento(List<Evento> evento) {
         this.evento = evento;
-    }
+    }*/
 }

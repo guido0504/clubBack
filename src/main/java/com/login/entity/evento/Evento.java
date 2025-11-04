@@ -33,6 +33,12 @@ public class Evento {
 
     private String titulo;
 
+    @Column(length = 500)
+    private String imageUrl;
+
+    @Column(length = 500)
+    private String videoUrl;
+
     public Long getId() {
         return id;
     }
@@ -111,5 +117,21 @@ public class Evento {
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getVideoUrl() {
+        return videoUrl;
+    }
+
+    public void setVideoUrl(String videoUrl) {
+        this.videoUrl = videoUrl;
     }
 }
