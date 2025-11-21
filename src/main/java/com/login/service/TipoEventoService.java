@@ -3,7 +3,6 @@ package com.login.service;
 import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.dto.tipoEvento.TipoEventoRequestDto;
 import com.login.dto.tipoEvento.TipoEventoResponseDto;
-import com.login.entity.tipoEvento.TipoEvento;
 
 import java.util.List;
 

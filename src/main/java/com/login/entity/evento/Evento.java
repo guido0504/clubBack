@@ -1,6 +1,6 @@
 package com.login.entity.evento;
 
-import com.login.entity.tipoEvento.TipoEvento;
+import com.login.entity.tipoEvento.TipoEventoEntity;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -15,7 +15,7 @@ public class Evento {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tipo_evento_id")
-    private TipoEvento tipoEvento;
+    private TipoEventoEntity tipoEvento;
 
     private Date fechaEvento;
 
@@ -47,11 +47,11 @@ public class Evento {
         this.id = id;
     }
 
-    public TipoEvento getTipoEvento() {
+    public TipoEventoEntity getTipoEvento() {
         return tipoEvento;
     }
 
-    public void setTipoEvento(TipoEvento tipoEvento) {
+    public void setTipoEvento(TipoEventoEntity tipoEvento) {
         this.tipoEvento = tipoEvento;
     }
 

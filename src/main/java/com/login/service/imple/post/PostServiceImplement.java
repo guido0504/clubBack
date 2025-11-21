@@ -1,10 +1,10 @@
-package com.login.service.imple;
+package com.login.service.imple.post;
 
 import com.login.dto.ResponseDefaultDto;
 import com.login.dto.post.PostRequestDto;
 import com.login.dto.post.PostResponseDto;
-import com.login.entity.Post;
-import com.login.repository.PostRepository;
+import com.login.entity.post.Post;
+import com.login.repository.PostRepository.PostRepository;
 import com.login.repository.tipoEventoRepository.TipoEventoRepository;
 import com.login.service.PostService;
 import org.springframework.stereotype.Service;

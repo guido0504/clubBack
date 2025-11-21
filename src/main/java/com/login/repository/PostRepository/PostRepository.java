@@ -1,6 +1,6 @@
-package com.login.repository;
+package com.login.repository.PostRepository;
 
-import com.login.entity.Post;
+import com.login.entity.post.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

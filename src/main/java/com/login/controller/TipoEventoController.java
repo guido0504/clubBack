@@ -1,10 +1,8 @@
 package com.login.controller;
 
 import com.login.dto.ResponseDefaultDto;
-import com.login.dto.tipoActividad.TipoActividadRequestDto;
 import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.dto.tipoEvento.TipoEventoRequestDto;
-import com.login.entity.tipoEvento.TipoEvento;
 import com.login.service.imple.tipoEvento.TipoEventoServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

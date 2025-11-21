@@ -3,7 +3,7 @@ package com.login.service.imple.tipoEvento;
 import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.dto.tipoEvento.TipoEventoRequestDto;
 import com.login.dto.tipoEvento.TipoEventoResponseDto;
-import com.login.entity.tipoEvento.TipoEvento;
+import com.login.entity.tipoEvento.TipoEventoEntity;
 import com.login.repository.tipoEventoRepository.TipoEventoRepository;
 import com.login.service.TipoEventoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +20,7 @@ public class TipoEventoServiceImplement implements TipoEventoService {
 
     @Override
     public TipoEventoResponseDto save(TipoEventoRequestDto tipoEvento) {
-        tipoEventoRepository.save(TipoEvento.converTo(tipoEvento));
+        tipoEventoRepository.save(TipoEventoEntity.converTo(tipoEvento));
         return TipoEventoResponseDto.convertTo(tipoEvento);
     }
 
@@ -36,7 +36,7 @@ public class TipoEventoServiceImplement implements TipoEventoService {
 
     @Override
     public TipoEventoResponseDto update(TipoEventoRequestCompleteDto tipoEvento) {
-        TipoEvento tipoEventoE = TipoEvento.converTo(tipoEvento);
+        TipoEventoEntity tipoEventoE = TipoEventoEntity.converTo(tipoEvento);
         tipoEventoRepository.save(tipoEventoE);
         return TipoEventoResponseDto.convertTo(tipoEventoE);
     }

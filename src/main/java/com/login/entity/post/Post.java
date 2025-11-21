@@ -1,6 +1,6 @@
-package com.login.entity;
+package com.login.entity.post;
 
-import com.login.entity.tipoEvento.TipoEvento;
+import com.login.entity.tipoEvento.TipoEventoEntity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -22,7 +22,7 @@ public class Post {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tipo_evento_id")
-    private TipoEvento tipoEvento; // Noticias, Eventos, etc.
+    private TipoEventoEntity tipoEvento; // Noticias, Eventos, etc.
 
     @Column(length = 500)
     private String imageUrl;
@@ -33,7 +33,7 @@ public class Post {
     @Column(nullable = false)
     private LocalDateTime createdAt; // Usamos LocalDateTime para manejar la fecha/hora de creación
 
-    public Post(Long id, String title, String body, TipoEvento section, String imageUrl, String videoUrl, LocalDateTime createdAt) {
+    public Post(Long id, String title, String body, TipoEventoEntity section, String imageUrl, String videoUrl, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.body = body;
@@ -43,7 +43,7 @@ public class Post {
         this.createdAt = createdAt;
     }
 
-    public Post(String videoUrl, String imageUrl, TipoEvento section, String body, String title) {
+    public Post(String videoUrl, String imageUrl, TipoEventoEntity section, String body, String title) {
         this.videoUrl = videoUrl;
         this.imageUrl = imageUrl;
         this.tipoEvento = section;
@@ -76,11 +76,11 @@ public class Post {
         this.body = body;
     }
 
-    public TipoEvento getTipoEvento() {
+    public TipoEventoEntity getTipoEvento() {
         return tipoEvento;
     }
 
-    public void setTipoEvento(TipoEvento tipoEvento) {
+    public void setTipoEvento(TipoEventoEntity tipoEvento) {
         this.tipoEvento = tipoEvento;
     }
 

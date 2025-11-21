@@ -1,7 +1,9 @@
 package com.login.controller;
 
 import com.login.dto.ResponseDefaultDto;
+import com.login.dto.tipoActividad.TipoActividadRequestCompleteDto;
 import com.login.dto.tipoActividad.TipoActividadRequestDto;
+import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.service.imple.tipoActividad.TipoActividadServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +39,13 @@ public class TipoActividadController {
     @DeleteMapping("/delete/{id}")
     public ResponseDefaultDto delete(@PathVariable("id") Long id){
         responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadServiceImplement.delete(id),"Se muestran los tipos de actividades");
+        return responseDefaultDto;
+    }
+
+    @PutMapping(value = "/update")
+    public ResponseDefaultDto update(TipoActividadRequestCompleteDto tipoActividadRequestDto){
+        tipoActividadServiceImplement.update(tipoActividadRequestDto);
+        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadRequestDto,"Se actualizo el tipo de actividad");
         return responseDefaultDto;
     }
 }

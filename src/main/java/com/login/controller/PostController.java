@@ -2,7 +2,7 @@ package com.login.controller;
 
 import com.login.dto.ResponseDefaultDto;
 import com.login.dto.post.PostRequestDto;
-import com.login.service.imple.PostServiceImplement;
+import com.login.service.imple.post.PostServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

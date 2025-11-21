@@ -4,14 +4,11 @@ package com.login.entity.tipoEvento;
 
 import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.dto.tipoEvento.TipoEventoRequestDto;
-import com.login.entity.evento.Evento;
 import jakarta.persistence.*;
-
-import java.util.List;
 
 @Entity
 @Table(name="tipo-evento")
-public class TipoEvento {
+public class TipoEventoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Autoincremental
     private long id;
@@ -23,17 +20,17 @@ public class TipoEvento {
     //private List<Evento> evento;
 
     // Constructor vacío (Obligatorio para JPA)
-    public TipoEvento() {
+    public TipoEventoEntity() {
     }
 
     // Constructor con parámetros
-    public TipoEvento(long id, String nombre) {
+    public TipoEventoEntity(long id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
     // Constructor con parámetros
-    public TipoEvento(String nombre) {
+    public TipoEventoEntity(String nombre) {
         this.nombre = nombre;
     }
 
@@ -56,12 +53,12 @@ public class TipoEvento {
 
     // Repository conecta nuestro proyecto con la BD
 
-    public static TipoEvento converTo(TipoEventoRequestDto tipoEventoRequestDto){
-        return new TipoEvento(tipoEventoRequestDto.npmbre());
+    public static TipoEventoEntity converTo(TipoEventoRequestDto tipoEventoRequestDto){
+        return new TipoEventoEntity(tipoEventoRequestDto.npmbre());
     }
 
-    public static TipoEvento converTo(TipoEventoRequestCompleteDto tipoEventoRequestDto){
-        return new TipoEvento(tipoEventoRequestDto.id(), tipoEventoRequestDto.nombre());
+    public static TipoEventoEntity converTo(TipoEventoRequestCompleteDto tipoEventoRequestDto){
+        return new TipoEventoEntity(tipoEventoRequestDto.id(), tipoEventoRequestDto.nombre());
     }
 
     /*public List<Evento> getEvento() {

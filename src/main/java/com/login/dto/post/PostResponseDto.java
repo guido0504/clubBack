@@ -1,6 +1,6 @@
 package com.login.dto.post;
 
-import com.login.entity.tipoEvento.TipoEvento;
+import com.login.entity.tipoEvento.TipoEventoEntity;
 
 import java.time.LocalDateTime;
 
@@ -8,7 +8,7 @@ public record PostResponseDto(
         Long id,
         String title,
         String body,
-        TipoEvento section,
+        TipoEventoEntity section,
         String imageUrl,
         String videoUrl,
         LocalDateTime createdAt){
