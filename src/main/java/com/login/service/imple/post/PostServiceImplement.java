@@ -28,6 +28,7 @@ public class PostServiceImplement implements PostService {
 
     @Override
     @Transactional(readOnly = true)
+
     public ResponseDefaultDto findAll() {
         // En este punto, convertirías las Entidades (Post) a DTOs (PostResponseDto)
         List<PostResponseDto> postResponse = this.postRepository.findAll().stream()

@@ -8,13 +8,13 @@ import java.util.Optional;
 
 public interface PaisService {
 
-    public Pais save(Pais pais);
+    Pais save(Pais pais);
 
-    public List<Pais> findAll();
+    List<Pais> findAll();
 
-    public Optional<Pais> findById(Long id);
+    Optional<Pais> findById(Long id);
 
-    public Pais update(Pais pais);
+    Pais update(Pais pais);
 
-    public String delete(Long id);
+    String delete(Long id);
 }

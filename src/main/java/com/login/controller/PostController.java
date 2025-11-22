@@ -38,8 +38,4 @@ public class PostController {
         return postServiceImplement.delete(id);
     }
 
-
-
-
-
 }

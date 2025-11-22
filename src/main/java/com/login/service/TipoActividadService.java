@@ -9,13 +9,13 @@ import java.util.Optional;
 
 public interface TipoActividadService {
 
-    public TipoActividadResponseDto save(TipoActividadRequestDto tipoActividadRequestDto);
+    TipoActividadResponseDto save(TipoActividadRequestDto tipoActividadRequestDto);
 
-    public List<TipoActividadResponseDto> findAll();
+    List<TipoActividadResponseDto> findAll();
 
-    public TipoActividadResponseDto findById(Long id);
+    TipoActividadResponseDto findById(Long id);
 
-    public TipoActividadResponseDto update(TipoActividadRequestCompleteDto tipoActividadRequestCompleteDto);
+    TipoActividadResponseDto update(TipoActividadRequestCompleteDto tipoActividadRequestCompleteDto);
 
-    public String delete(Long id);
+    String delete(Long id);
 }

@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface TipoEventoService {
     // Creamos métodos abstractos (5 tenemos que crear: save, gelAll, getById, update, delete, )
-    public TipoEventoResponseDto save(TipoEventoRequestDto tipoEvento);
-    public List<TipoEventoResponseDto> getAll();
-    public TipoEventoResponseDto getById(Long id);
-    public TipoEventoResponseDto update(TipoEventoRequestCompleteDto tipoEvento);
-    public String delete(Long id);
+    TipoEventoResponseDto save(TipoEventoRequestDto tipoEvento);
+    List<TipoEventoResponseDto> getAll();
+    TipoEventoResponseDto getById(Long id);
+    TipoEventoResponseDto update(TipoEventoRequestCompleteDto tipoEvento);
+    String delete(Long id);
 
 }

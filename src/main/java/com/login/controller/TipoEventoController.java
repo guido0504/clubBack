@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class TipoEventoController {
 
     @Autowired
-    private TipoEventoServiceImplement tipoEventoServiceImplement;
+    private final TipoEventoServiceImplement tipoEventoServiceImplement;
 
     private ResponseDefaultDto responseDefaultDto;
 
