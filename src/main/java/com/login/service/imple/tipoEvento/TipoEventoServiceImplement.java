@@ -1,8 +1,10 @@
 package com.login.service.imple.tipoEvento;
 
+import com.login.dto.ResponseDefaultDto;
 import com.login.dto.tipoEvento.TipoEventoRequestCompleteDto;
 import com.login.dto.tipoEvento.TipoEventoRequestDto;
 import com.login.dto.tipoEvento.TipoEventoResponseDto;
+import com.login.entity.dia.DiaEntity;
 import com.login.entity.tipoEvento.TipoEventoEntity;
 import com.login.repository.tipoEventoRepository.TipoEventoRepository;
 import com.login.service.TipoEventoService;
@@ -19,31 +21,44 @@ public class TipoEventoServiceImplement implements TipoEventoService {
 
 
     @Override
-    public TipoEventoResponseDto save(TipoEventoRequestDto tipoEvento) {
-        tipoEventoRepository.save(TipoEventoEntity.converTo(tipoEvento));
-        return TipoEventoResponseDto.convertTo(tipoEvento);
+    public ResponseDefaultDto save(TipoEventoRequestDto tipoEvento) {
+        try {
+            TipoEventoEntity tipoEventoEntity = TipoEventoEntity.converTo(tipoEvento);
+            tipoEventoRepository.save(tipoEventoEntity);
+            return new ResponseDefaultDto(200,"Existoso", TipoEventoResponseDto.convertTo(tipoEventoEntity),"Se guardo exitosamente");
+        } catch(Exception e){
+            return new ResponseDefaultDto(500,"Error","","Error general: " + e);
+        }
     }
 
     @Override
-    public List<TipoEventoResponseDto> getAll() {
-        return TipoEventoResponseDto.convertTo(tipoEventoRepository.findAll());
+    public ResponseDefaultDto getAll() {
+        return new ResponseDefaultDto(200,"Existoso",tipoEventoRepository.findAll(),"Listado completo");
     }
 
     @Override
-    public TipoEventoResponseDto getById(Long id) {
-        return TipoEventoResponseDto.convertTo(tipoEventoRepository.findById(id).get());
+    public ResponseDefaultDto getById(Long id) {
+        TipoEventoEntity tipoEventoEntity = tipoEventoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tipo evento no encontrado con ID: " + id));
+        return new ResponseDefaultDto(200,"Existoso",TipoEventoResponseDto.convertTo(tipoEventoEntity),"Valor retornado");
     }
 
     @Override
-    public TipoEventoResponseDto update(TipoEventoRequestCompleteDto tipoEvento) {
-        TipoEventoEntity tipoEventoE = TipoEventoEntity.converTo(tipoEvento);
-        tipoEventoRepository.save(tipoEventoE);
-        return TipoEventoResponseDto.convertTo(tipoEventoE);
+    public ResponseDefaultDto update(TipoEventoRequestCompleteDto tipoEvento) {
+        try {
+            TipoEventoEntity tipoEventoEntity = tipoEventoRepository.findById(tipoEvento.id())
+                    .orElseThrow(() -> new RuntimeException("Tipo evento no encontrado con ID: " + tipoEvento.id()));
+            tipoEventoEntity.setNombre(tipoEvento.nombre());
+            tipoEventoRepository.save(tipoEventoEntity);
+            return new ResponseDefaultDto(200,"Existoso", TipoEventoResponseDto.convertTo(tipoEventoEntity),"Se actualizo exitosamente");
+        } catch(Exception e){
+            return new ResponseDefaultDto(500,"Error","","Error general: " + e);
+        }
     }
 
     @Override
-    public String delete(Long id) {
+    public ResponseDefaultDto delete(Long id) {
         tipoEventoRepository.deleteById(id);
-        return "Se elimino exitosamente";
+        return new ResponseDefaultDto(200,"Exitoso",null,"Dato eliminado exitosamente");
     }
 }

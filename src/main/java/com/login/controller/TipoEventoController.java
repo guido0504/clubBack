@@ -22,31 +22,26 @@ public class TipoEventoController {
 
     @PostMapping(value = "/create")
     public ResponseDefaultDto add(TipoEventoRequestDto tipoEventoRequestDto){
-        tipoEventoServiceImplement.save(tipoEventoRequestDto);
-        return new ResponseDefaultDto(200,"Exitoso",tipoEventoRequestDto,"Se agrego el tipo de evento");
+        return tipoEventoServiceImplement.save(tipoEventoRequestDto);
     }
 
     @GetMapping("/getAll")
     public ResponseDefaultDto getAll(){
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoEventoServiceImplement.getAll(),"Se muestran los tipos de actividades");
-        return responseDefaultDto;
+        return tipoEventoServiceImplement.getAll();
     }
 
     @GetMapping("/getById/{id}")
     public ResponseDefaultDto getById(@PathVariable("id") Long id){
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoEventoServiceImplement.getById(id),"Se muestran los tipos de eventos");
-        return responseDefaultDto;
+        return tipoEventoServiceImplement.getById(id);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseDefaultDto delete(@PathVariable("id") Long id){
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",null,tipoEventoServiceImplement.delete(id));
-        return responseDefaultDto;
+        return tipoEventoServiceImplement.delete(id);
     }
 
     @PutMapping(value = "/update")
     public ResponseDefaultDto update(TipoEventoRequestCompleteDto tipoEventoRequestDto){
-        tipoEventoServiceImplement.update(tipoEventoRequestDto);
-        return new ResponseDefaultDto(200,"Exitoso",tipoEventoRequestDto,"Se modifico el tipo de evento");
+        return tipoEventoServiceImplement.update(tipoEventoRequestDto);
     }
 }

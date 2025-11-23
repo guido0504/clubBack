@@ -60,7 +60,8 @@ public class DiaServiceImplement implements DiaService {
     @Override
     public ResponseDefaultDto delete(Long id) {
         diaRepository.deleteById(id);
-        return new ResponseDefaultDto(200,"Exitoso",null,"Dato eliminado exitosamente");    }
+        return new ResponseDefaultDto(200,"Exitoso",null,"Dato eliminado exitosamente");
+    }
 
     // --- Métodos de Conversión (Debes implementarlos) ---
     private DiaEntity convertToEntity(AddDiaRequestDTO dto) {

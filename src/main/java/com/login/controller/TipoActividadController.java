@@ -19,33 +19,26 @@ public class TipoActividadController {
 
     @PostMapping(value = "/create")
     public ResponseDefaultDto add(TipoActividadRequestDto tipoActividadRequestDto){
-        tipoActividadServiceImplement.save(tipoActividadRequestDto);
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadRequestDto,"Se agrego el tipo de actividad");
-        return responseDefaultDto;
+        return tipoActividadServiceImplement.save(tipoActividadRequestDto);
     }
 
     @GetMapping("/getAll")
     public ResponseDefaultDto getAll(){
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadServiceImplement.findAll(),"Se muestran los tipos de actividades");
-        return responseDefaultDto;
+        return tipoActividadServiceImplement.findAll();
     }
 
     @GetMapping("/getById/{id}")
     public ResponseDefaultDto getById(@PathVariable("id") Long id){
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadServiceImplement.findById(id),"Se muestran los tipos de actividades");
-        return responseDefaultDto;
+        return tipoActividadServiceImplement.findById(id);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseDefaultDto delete(@PathVariable("id") Long id){
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadServiceImplement.delete(id),"Se muestran los tipos de actividades");
-        return responseDefaultDto;
+        return tipoActividadServiceImplement.delete(id);
     }
 
     @PutMapping(value = "/update")
     public ResponseDefaultDto update(TipoActividadRequestCompleteDto tipoActividadRequestDto){
-        tipoActividadServiceImplement.update(tipoActividadRequestDto);
-        responseDefaultDto = new ResponseDefaultDto(200,"Exitoso",tipoActividadRequestDto,"Se actualizo el tipo de actividad");
-        return responseDefaultDto;
+        return tipoActividadServiceImplement.update(tipoActividadRequestDto);
     }
 }

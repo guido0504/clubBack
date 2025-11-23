@@ -1,5 +1,6 @@
 package com.login.service;
 
+import com.login.dto.ResponseDefaultDto;
 import com.login.dto.tipoActividad.TipoActividadRequestCompleteDto;
 import com.login.dto.tipoActividad.TipoActividadRequestDto;
 import com.login.dto.tipoActividad.TipoActividadResponseDto;
@@ -9,13 +10,13 @@ import java.util.Optional;
 
 public interface TipoActividadService {
 
-    TipoActividadResponseDto save(TipoActividadRequestDto tipoActividadRequestDto);
+    ResponseDefaultDto save(TipoActividadRequestDto tipoActividadRequestDto);
 
-    List<TipoActividadResponseDto> findAll();
+    ResponseDefaultDto findAll();
 
-    TipoActividadResponseDto findById(Long id);
+    ResponseDefaultDto findById(Long id);
 
-    TipoActividadResponseDto update(TipoActividadRequestCompleteDto tipoActividadRequestCompleteDto);
+    ResponseDefaultDto update(TipoActividadRequestCompleteDto tipoActividadRequestCompleteDto);
 
-    String delete(Long id);
+    ResponseDefaultDto delete(Long id);
 }
