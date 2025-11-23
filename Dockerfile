@@ -1,10 +1,13 @@
 # ---- Build ----
 FROM maven:3.9.8-eclipse-temurin-21 AS build
 WORKDIR /workspace
-COPY . .
+COPY pom.xml .
+RUN mvn -B dependency:go-offline
+
+COPY src ./src
 
 # Compila el módulo que contiene el pom (newLevel)
-RUN mvn -f clubBack/pom.xml -DskipTests clean package
+RUN mvn -B -DskipTests clean package
 # (equivalente: WORKDIR /workspace/newLevel && mvn -DskipTests clean package)
 
 # ---- Run ----
