@@ -15,7 +15,7 @@ FROM eclipse-temurin:21-jre
 WORKDIR /app
 
 # Copiá el jar generado por el módulo newLevel
-COPY --from=build /workspace/clubBack/target/*.jar app.jar
+COPY --from=build /workspace/target/*.jar app.jar
 
 # Memoria prudente para plan Free
 ENV JAVA_TOOL_OPTIONS="-Xms256m -Xmx512m -XX:+UseSerialGC"
