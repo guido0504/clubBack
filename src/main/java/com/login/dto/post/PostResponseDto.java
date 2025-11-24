@@ -8,7 +8,8 @@ public record PostResponseDto(
         Long id,
         String title,
         String body,
-        TipoEventoEntity section,
+        TipoEventoEntity tipoEvento,
+        LocalDateTime fechaHora,
         String imageUrl,
         String videoUrl,
         LocalDateTime createdAt){

@@ -30,26 +30,30 @@ public class Post {
     @Column(length = 500)
     private String videoUrl;
 
+    private LocalDateTime fechaHora;
+
     @Column(nullable = false)
     private LocalDateTime createdAt; // Usamos LocalDateTime para manejar la fecha/hora de creación
 
-    public Post(Long id, String title, String body, TipoEventoEntity section, String imageUrl, String videoUrl, LocalDateTime createdAt) {
+    public Post(Long id, String title, String body, TipoEventoEntity section, String imageUrl, String videoUrl,LocalDateTime fechaHora, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.tipoEvento = section;
         this.imageUrl = imageUrl;
         this.videoUrl = videoUrl;
+        this.fechaHora = fechaHora;
         this.createdAt = createdAt;
     }
 
-    public Post(String videoUrl, String imageUrl, TipoEventoEntity section, String body, String title) {
+    public Post(String videoUrl, String imageUrl, TipoEventoEntity section, String body, String title,LocalDateTime fechaHora) {
         this.videoUrl = videoUrl;
         this.imageUrl = imageUrl;
         this.tipoEvento = section;
         this.body = body;
         this.title = title;
         this.createdAt = LocalDateTime.now();
+        this.fechaHora = fechaHora;
     }
 
     public Long getId() {
@@ -106,6 +110,14 @@ public class Post {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getFechaHora() {
+        return fechaHora;
+    }
+
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
     }
 
     // Constructor vacío

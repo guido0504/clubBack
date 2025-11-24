@@ -64,9 +64,10 @@ public class PostServiceImplement implements PostService {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post no encontrado con ID: " + id));
         post.setBody(postDto.body());
-        post.setTipoEvento(tipoEventoRepository.findById(postDto.section()).get());
+        post.setTipoEvento(tipoEventoRepository.findById(postDto.tipoEvento()).get());
         post.setImageUrl(postDto.imageUrl());
         post.setVideoUrl(postDto.videoUrl());
+        post.setFechaHora(postDto.fechaHora());
         post.setTitle(postDto.title());
         postRepository.save(post);
         return new ResponseDefaultDto(200,"Exitoso",post,"Se actualizo correctamente");
@@ -80,11 +81,11 @@ public class PostServiceImplement implements PostService {
 
     // --- Métodos de Conversión (Debes implementarlos) ---
     private Post convertToEntity(PostRequestDto dto) {
-        return new Post(dto.videoUrl(), dto.imageUrl(), tipoEventoRepository.findById(dto.section()).get(),dto.body(),dto.title());
+        return new Post(dto.videoUrl(), dto.imageUrl(), tipoEventoRepository.findById(dto.tipoEvento()).get(),dto.body(),dto.title(),dto.fechaHora());
     }
 
     private PostResponseDto convertToDto(Post entity) {
-        return new PostResponseDto(entity.getId(),entity.getTitle(),entity.getBody(),entity.getTipoEvento(),
+        return new PostResponseDto(entity.getId(),entity.getTitle(),entity.getBody(),entity.getTipoEvento(), entity.getFechaHora(),
                 entity.getImageUrl(),entity.getVideoUrl(),entity.getCreatedAt()); // Implementar la lógica real
     }
 }
