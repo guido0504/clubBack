@@ -35,10 +35,12 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(
-                                "/pais/**",
-                                "/tipo-actividad/**",
-                                "/tipo-evento/**",
-                                "/post/**"
+                                "/api/pais/**",
+                                "/api/tipo-actividad/**",
+                                "/api/tipo-evento/**",
+                                "/api/post/**",
+                                "/api/dia/**",
+                                "/api/actividad/**"
                         ).permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         //.requestMatchers("/api/order/random").hasAuthority("random_order")

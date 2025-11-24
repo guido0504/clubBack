@@ -13,7 +13,7 @@ public class PostController {
     @Autowired
     private PostServiceImplement postServiceImplement;
 
-    @PostMapping(value = "/create")
+    @PostMapping(value = "api/create")
     public ResponseDefaultDto create(PostRequestDto postRequestDto){
         return postServiceImplement.create(postRequestDto);
     }
