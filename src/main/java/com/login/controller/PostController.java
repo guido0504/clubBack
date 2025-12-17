@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/post")
+@RequestMapping(value = "api/post")
 public class PostController {
 
     @Autowired
     private PostServiceImplement postServiceImplement;
 
-    @PostMapping(value = "api/create")
-    public ResponseDefaultDto create(PostRequestDto postRequestDto){
+    @PostMapping(value = "create")
+    public ResponseDefaultDto create(@RequestBody PostRequestDto postRequestDto){
         return postServiceImplement.create(postRequestDto);
     }
 
@@ -29,7 +29,7 @@ public class PostController {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseDefaultDto update(@PathVariable("id") long id,PostRequestDto postRequestDto){
+    public ResponseDefaultDto update(@RequestBody @PathVariable("id") long id,@RequestBody PostRequestDto postRequestDto){
         return postServiceImplement.update(id,postRequestDto);
     }
 

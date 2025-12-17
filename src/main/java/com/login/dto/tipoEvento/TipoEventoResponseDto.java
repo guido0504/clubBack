@@ -13,7 +13,7 @@ public record TipoEventoResponseDto(
 ) {
 
     public static TipoEventoResponseDto convertTo(TipoEventoRequestDto tipoEventoRequestDto){
-        return new TipoEventoResponseDto(0L,tipoEventoRequestDto.npmbre());
+        return new TipoEventoResponseDto(0L,tipoEventoRequestDto.nombre());
     }
 
     public static TipoEventoResponseDto convertTo(TipoEventoEntity tipoEvento){

@@ -7,7 +7,7 @@ import com.login.dto.tipoEvento.TipoEventoRequestDto;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="tipo-evento")
+@Table(name="tipo_evento")
 public class TipoEventoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)  // Autoincremental
@@ -54,7 +54,7 @@ public class TipoEventoEntity {
     // Repository conecta nuestro proyecto con la BD
 
     public static TipoEventoEntity converTo(TipoEventoRequestDto tipoEventoRequestDto){
-        return new TipoEventoEntity(tipoEventoRequestDto.npmbre());
+        return new TipoEventoEntity(tipoEventoRequestDto.nombre());
     }
 
     public static TipoEventoEntity converTo(TipoEventoRequestCompleteDto tipoEventoRequestDto){

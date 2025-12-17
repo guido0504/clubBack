@@ -3,12 +3,17 @@ package com.login.service.imple.post;
 import com.login.dto.ResponseDefaultDto;
 import com.login.dto.post.PostRequestDto;
 import com.login.dto.post.PostResponseDto;
+import com.login.entity.image.ImageEntity;
 import com.login.entity.post.Post;
+import com.login.entity.tipoEvento.TipoEventoEntity;
+import com.login.repository.ImageRepository.ImageRepository;
 import com.login.repository.PostRepository.PostRepository;
 import com.login.repository.tipoEventoRepository.TipoEventoRepository;
 import com.login.service.PostService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,9 +24,12 @@ public class PostServiceImplement implements PostService {
     // Nota: Necesitarás un Mapper para convertir Entity <-> DTO (p. ej., MapStruct o manual)
 
     private final TipoEventoRepository tipoEventoRepository;
-    public PostServiceImplement(PostRepository postRepository, TipoEventoRepository tipoEventoRepository) {
+    private final ImageRepository imageRepository;
+
+    public PostServiceImplement(PostRepository postRepository, TipoEventoRepository tipoEventoRepository,ImageRepository imageRepository) {
         this.postRepository = postRepository;
         this.tipoEventoRepository = tipoEventoRepository;
+        this.imageRepository = imageRepository;
     }
 
     // --- Métodos de CRUD (Lógica de Negocio) ---
@@ -49,7 +57,6 @@ public class PostServiceImplement implements PostService {
     @Override
     @Transactional
     public ResponseDefaultDto create(PostRequestDto postDto){
-
         try {
             Post post = convertToEntity(postDto);
             Post savedPost = postRepository.save(post);
@@ -63,13 +70,15 @@ public class PostServiceImplement implements PostService {
     public ResponseDefaultDto update(Long id, PostRequestDto postDto) {
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Post no encontrado con ID: " + id));
-        post.setBody(postDto.body());
-        post.setTipoEvento(tipoEventoRepository.findById(postDto.tipoEvento()).get());
-        post.setImageUrl(postDto.imageUrl());
-        post.setVideoUrl(postDto.videoUrl());
-        post.setFechaHora(postDto.fechaHora());
-        post.setTitle(postDto.title());
-        postRepository.save(post);
+
+        if(post != null) {
+            post = convertToEntity(postDto);
+            post.setId(id);
+            postRepository.save(post);
+        }else {
+            throw new RuntimeException("No existe el post");
+        }
+
         return new ResponseDefaultDto(200,"Exitoso",post,"Se actualizo correctamente");
     }
 
@@ -80,12 +89,31 @@ public class PostServiceImplement implements PostService {
     }
 
     // --- Métodos de Conversión (Debes implementarlos) ---
-    private Post convertToEntity(PostRequestDto dto) {
-        return new Post(dto.videoUrl(), dto.imageUrl(), tipoEventoRepository.findById(dto.tipoEvento()).get(),dto.body(),dto.title(),dto.fechaHora());
+    private Post convertToEntity( PostRequestDto dto ) {
+        Post post = new Post();
+        post.setTitle(dto.title());
+        post.setBody(dto.body());
+        post.setFechaHora(dto.fechaHora().toLocalDateTime());
+        post.setCreatedAt(LocalDateTime.now());
+
+        // Tipo de evento (obligatorio)
+        TipoEventoEntity tipo = tipoEventoRepository.findById(dto.tipoEvento())
+                .orElseThrow(() ->
+                        new RuntimeException("Tipo de evento no encontrado: " + dto.tipoEvento())
+                );
+        post.setTipoEvento(tipo);
+
+        // Imagen (opcional)
+        if (dto.image() != null) {  // o dto.imageId()
+            ImageEntity image = new ImageEntity(imageRepository.findById(dto.image()).get());
+            post.setImage(image);
+        }
+
+        return post;
     }
 
     private PostResponseDto convertToDto(Post entity) {
         return new PostResponseDto(entity.getId(),entity.getTitle(),entity.getBody(),entity.getTipoEvento(), entity.getFechaHora(),
-                entity.getImageUrl(),entity.getVideoUrl(),entity.getCreatedAt()); // Implementar la lógica real
+                entity.getImageUrl(),entity.getImage().getId(),entity.getCreatedAt()); // Implementar la lógica real
     }
 }

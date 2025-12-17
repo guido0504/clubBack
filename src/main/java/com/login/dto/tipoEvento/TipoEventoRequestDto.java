@@ -3,5 +3,5 @@
 package com.login.dto.tipoEvento;
 
 public record TipoEventoRequestDto(
-        String npmbre
+        String nombre
 ) {}

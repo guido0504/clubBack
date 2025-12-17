@@ -1,5 +1,6 @@
 package com.login.entity.post;
 
+import com.login.entity.image.ImageEntity;
 import com.login.entity.tipoEvento.TipoEventoEntity;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -20,35 +21,31 @@ public class Post {
     @Column(nullable = false)
     private String body;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "tipo_evento_id")
     private TipoEventoEntity tipoEvento; // Noticias, Eventos, etc.
 
-    @Column(length = 500)
-    private String imageUrl;
-
-    @Column(length = 500)
-    private String videoUrl;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="image_id")
+    private ImageEntity image;
 
     private LocalDateTime fechaHora;
 
     @Column(nullable = false)
     private LocalDateTime createdAt; // Usamos LocalDateTime para manejar la fecha/hora de creación
 
-    public Post(Long id, String title, String body, TipoEventoEntity section, String imageUrl, String videoUrl,LocalDateTime fechaHora, LocalDateTime createdAt) {
+    public Post(Long id, String title, String body, TipoEventoEntity section, ImageEntity image,LocalDateTime fechaHora, LocalDateTime createdAt) {
         this.id = id;
         this.title = title;
         this.body = body;
         this.tipoEvento = section;
-        this.imageUrl = imageUrl;
-        this.videoUrl = videoUrl;
+        this.image = image;
         this.fechaHora = fechaHora;
         this.createdAt = createdAt;
     }
 
-    public Post(String videoUrl, String imageUrl, TipoEventoEntity section, String body, String title,LocalDateTime fechaHora) {
-        this.videoUrl = videoUrl;
-        this.imageUrl = imageUrl;
+    public Post(ImageEntity image, TipoEventoEntity section, String body, String title,LocalDateTime fechaHora) {
+        this.image = image;
         this.tipoEvento = section;
         this.body = body;
         this.title = title;
@@ -88,20 +85,17 @@ public class Post {
         this.tipoEvento = tipoEvento;
     }
 
+    @Transient
     public String getImageUrl() {
-        return imageUrl;
+        return image != null ? image.getUrl() : null;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
+    public ImageEntity getImage() {
+        return image;
     }
 
-    public String getVideoUrl() {
-        return videoUrl;
-    }
-
-    public void setVideoUrl(String videoUrl) {
-        this.videoUrl = videoUrl;
+    public void setImage(ImageEntity image) {
+        this.image = image;
     }
 
     public LocalDateTime getCreatedAt() {

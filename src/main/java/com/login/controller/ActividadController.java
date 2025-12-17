@@ -16,7 +16,7 @@ public class ActividadController {
     private ActividadServiceImplement actividadServiceImplement;
 
     @PostMapping(value = "/create")
-    public ResponseDefaultDto create(AddActividadRequestDTO addActividadRequestDTO) throws PSQLException {
+    public ResponseDefaultDto create(@RequestBody AddActividadRequestDTO addActividadRequestDTO) throws PSQLException {
         return actividadServiceImplement.create(addActividadRequestDTO);
     }
 
@@ -31,7 +31,7 @@ public class ActividadController {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseDefaultDto update(@PathVariable("id") long id, UpdateActividadRequestDTO updateActividadRequestDTO){
+    public ResponseDefaultDto update(@RequestBody @PathVariable("id") long id, UpdateActividadRequestDTO updateActividadRequestDTO){
         return actividadServiceImplement.update(id,updateActividadRequestDTO);
     }
 

@@ -16,7 +16,7 @@ public class DiaController {
     private DiaServiceImplement diaServiceImplement;
 
     @PostMapping(value = "/create")
-    public ResponseDefaultDto create(AddDiaRequestDTO addDiaRequestDto) throws PSQLException {
+    public ResponseDefaultDto create(@RequestBody AddDiaRequestDTO addDiaRequestDto) throws PSQLException {
         return diaServiceImplement.create(addDiaRequestDto);
     }
 
@@ -31,7 +31,7 @@ public class DiaController {
     }
 
     @PutMapping(value = "/update/{id}")
-    public ResponseDefaultDto update(@PathVariable("id") long id, UpdateDiaRequestDTO updateDiaRequestDTO){
+    public ResponseDefaultDto update(@RequestBody @PathVariable("id") long id, UpdateDiaRequestDTO updateDiaRequestDTO){
         return diaServiceImplement.update(id,updateDiaRequestDTO);
     }
 

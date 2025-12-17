@@ -18,7 +18,7 @@ public class TipoActividadController {
     private ResponseDefaultDto responseDefaultDto;
 
     @PostMapping(value = "/create")
-    public ResponseDefaultDto add(TipoActividadRequestDto tipoActividadRequestDto){
+    public ResponseDefaultDto add(@RequestBody TipoActividadRequestDto tipoActividadRequestDto){
         return tipoActividadServiceImplement.save(tipoActividadRequestDto);
     }
 
@@ -38,7 +38,7 @@ public class TipoActividadController {
     }
 
     @PutMapping(value = "/update")
-    public ResponseDefaultDto update(TipoActividadRequestCompleteDto tipoActividadRequestDto){
+    public ResponseDefaultDto update(@RequestBody TipoActividadRequestCompleteDto tipoActividadRequestDto){
         return tipoActividadServiceImplement.update(tipoActividadRequestDto);
     }
 }

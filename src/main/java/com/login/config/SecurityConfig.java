@@ -40,7 +40,8 @@ public class SecurityConfig {
                                 "/api/tipo-evento/**",
                                 "/api/post/**",
                                 "/api/dia/**",
-                                "/api/actividad/**"
+                                "/api/actividad/**",
+                                "/api/images/**"
                         ).permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         //.requestMatchers("/api/order/random").hasAuthority("random_order")

@@ -21,7 +21,7 @@ public class TipoEventoController {
     }
 
     @PostMapping(value = "/create")
-    public ResponseDefaultDto add(TipoEventoRequestDto tipoEventoRequestDto){
+    public ResponseDefaultDto add(@RequestBody TipoEventoRequestDto tipoEventoRequestDto){
         return tipoEventoServiceImplement.save(tipoEventoRequestDto);
     }
 
@@ -41,7 +41,7 @@ public class TipoEventoController {
     }
 
     @PutMapping(value = "/update")
-    public ResponseDefaultDto update(TipoEventoRequestCompleteDto tipoEventoRequestDto){
+    public ResponseDefaultDto update(@RequestBody TipoEventoRequestCompleteDto tipoEventoRequestDto){
         return tipoEventoServiceImplement.update(tipoEventoRequestDto);
     }
 }
