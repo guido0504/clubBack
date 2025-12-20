@@ -25,7 +25,7 @@ public class Post {
     @JoinColumn(name = "tipo_evento_id")
     private TipoEventoEntity tipoEvento; // Noticias, Eventos, etc.
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="image_id")
     private ImageEntity image;
 
