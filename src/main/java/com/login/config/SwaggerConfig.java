@@ -36,10 +36,10 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
 						)
 				)
-				/*.servers(List.of(
-						new Server().url("https://api.tuservicio.com").description("Producción segura"),
-						new Server().url("http://localhost:8080").description("Entorno local")
-				))*/
+				.servers(List.of(
+						new io.swagger.v3.oas.models.servers.Server()
+								.url("https://clubback-production.up.railway.app")
+				))
 				.addSecurityItem(new SecurityRequirement().addList("bearerAuth"))
 				.components(new Components()
 						.addSecuritySchemes("bearerAuth",
