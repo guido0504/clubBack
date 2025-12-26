@@ -15,7 +15,7 @@ public class CorsConfig {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
 
         corsConfiguration.setAllowedOrigins(List.of("http://localhost:4200","http://localhost:4201", "https://clubvillaelvira.infinityfreeapp.com/",
-                "http://clubback-production.up.railway.app/"));
+                "https://clubback-production.up.railway.app/"));
         corsConfiguration.setAllowedMethods(List.of("GET","POST","PUT","DELETE","OPTIONS"));
         corsConfiguration.setAllowedHeaders(List.of("*"));
 
